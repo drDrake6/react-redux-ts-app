@@ -21,17 +21,30 @@ export const HandleRequest = (
   error: string | null, 
   callback: () => JSX.Element | string
 ) => {
-    if(isPostLoading) 
-      return (<div style={{
+  if(error)
+    return <h1>Error occured {error}</h1>
+  else
+  return (<div>
+    {callback()}
+    {isPostLoading &&
+        (<div style={{
         display: 'flex', 
         justifyContent: 'center',
         marginTop: '40%'}}>
           <Loader></Loader>
-      </div>)
-    if(error){
-      return `Error occured "${error}"`
-    }
-    return callback()
+      </div>)}
+  </div>)
+    // if(isPostLoading) 
+    //   return (<div style={{
+    //     display: 'flex', 
+    //     justifyContent: 'center',
+    //     marginTop: '40%'}}>
+    //       <Loader></Loader>
+    //   </div>)
+    // if(error){
+    //   return `Error occured "${error}"`
+    // }
+    // return callback()
     // if (posts.length === 0) return "No posts"
     // return "Posts list"
   }

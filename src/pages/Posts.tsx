@@ -12,6 +12,7 @@ import PostFilter from './PostFilter';
 import Pagination from '../components/UI/Pagination/Pagination';
 import { useObserver } from '../hooks/useObserver';
 import Loader from '../components/UI/Loader/Loader';
+import { HandleRequest } from '../utils/pages';
 
 const Posts: React.FC = () => {
    
@@ -59,32 +60,15 @@ const Posts: React.FC = () => {
             </MyModal>
             <hr style={{margin: '1em 0'}}/>
             <PostFilter filter={filter} setFilter={setFilter}/>
-            {error &&
-                <h1>Error occured {error}</h1>
-            }
-            <PostList 
-            remove={removePost}
-            posts={sortedAndSearchedPosts}
-            title={"Posts list"}
-            lastElement={lastElement}
-            loadedOk={!isPostLoading}/> 
-            {isPostLoading &&
-                <div style={{
-                    display: 'flex', 
-                    justifyContent: 'center',
-                    marginTop: '50'}}>
-                      <Loader></Loader>
-                  </div>
-            }
-            {/* {HandleRequest(isPostLoading, error, 
-                    () => posts.length === 0 ? <h1>No posts</h1> : <PostList 
+            {HandleRequest(isPostLoading, error, 
+                    () => <PostList 
                     remove={removePost}
                     posts={sortedAndSearchedPosts}
-                    title={"Posts list"}
+                    title={posts.length === 0 ? "No posts" : "Posts list"}
                     lastElement={lastElement}
                     loadedOk={!isPostLoading}/> 
-                  )} */}
-            <Pagination totalPages={totalPages ? totalPages : 0} page={page} changePage={changePage}/>
+                  )}
+            {/* <Pagination totalPages={totalPages ? totalPages : 0} page={page} changePage={changePage}/> */}
                 
         </div>
     );
