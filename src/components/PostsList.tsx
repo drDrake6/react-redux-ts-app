@@ -15,7 +15,6 @@ type PostListProps = {
 }
 
 const PostList: React.FC<PostListProps> = ({title, posts, remove, loadedOk, lastElement}) => {
-    //console.log(posts)
         return (
         <div>
             <h1 style={{textAlign: "center"}}>

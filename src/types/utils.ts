@@ -8,7 +8,7 @@ export type State = {
 export type KeyOf<T extends object> = Extract<keyof T, string>;
 
 export type PostFilterType = {
-    sort: KeyOf<Post>,
+    sort: KeyOf<Post> | undefined,
     query: string
 }
 

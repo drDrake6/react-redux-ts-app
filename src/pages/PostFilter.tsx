@@ -21,11 +21,13 @@ const PostFilter: React.FC<PostFilterProps> = ({filter, setFilter}) => {
         />
         <MySelect
           value={filter.sort}
-          onChange={e => setFilter({
+          onChange={(e) => {
+            setFilter({
             ...filter, sort: getPostKey(e.target.value)
-        })}
+        })}}
           defaultValue={'Sort by'}
           options={[
+            {value: '', name: 'not sorted', key: uuidv4()},
             {value: 'title', name: 'By name', key: uuidv4()},
             {value: 'body', name: 'By description', key: uuidv4()}
           ]}

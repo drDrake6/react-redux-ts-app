@@ -1,4 +1,5 @@
 import Loader from "../components/UI/Loader/Loader"
+import { PostFilterType } from "../types/utils"
 
 export const getPagesCount = (totalCount: number, limit: number) => {
     return Math.ceil(totalCount / limit)
@@ -14,6 +15,10 @@ export const getPagesArray = (totalPages: number) => {
 
 export const isPrevPage = (page: number, postsLenght: number, totalPages: number): boolean => {
   return page < 1 + postsLenght / totalPages;
+}
+
+export const isEffected = (filter: PostFilterType): boolean => {
+  return filter.query !== '' || filter.sort !== undefined;
 }
 
 export const HandleRequest = (

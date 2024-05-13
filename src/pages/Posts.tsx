@@ -12,25 +12,29 @@ import PostFilter from './PostFilter';
 import Pagination from '../components/UI/Pagination/Pagination';
 import { useObserver } from '../hooks/useObserver';
 import Loader from '../components/UI/Loader/Loader';
-import { HandleRequest } from '../utils/pages';
+import { HandleRequest, isEffected } from '../utils/pages';
 
 const Posts: React.FC = () => {
    
     let [modal, setModal] = useState(false);
-    let [filter, setFilter] = useState<PostFilterType>({sort: 'title', query: ''});
+    let [filter, setFilter] = useState<PostFilterType>({sort: undefined, query: ''});
     let [limit, setLimit] = useState(10);
     let [page, setPage] = useState(1);
     const lastElement = useRef<HTMLDivElement>(null);
 
     const {posts, totalPages, isLoading: isPostLoading, error} = useTypedSelector(state => state.posts);
 
-    useObserver(lastElement, page < (totalPages ? totalPages : 0), isPostLoading, () =>{
-        setPage(page + 1)
-      })
+    //console.log(paginated)
+
+    useObserver(lastElement, 
+        page < (totalPages ? totalPages : 0),
+        filter,
+        isPostLoading,
+        () => { setPage(page + 1) })
 
     useEffect(() => {
+        
         fetchPosts(limit, page, posts);
-        //console.log(limit, page)
     }, [limit, page])
 
     const removePost = (id: string) => {
@@ -59,14 +63,14 @@ const Posts: React.FC = () => {
             <PostForm create={createPost}/>
             </MyModal>
             <hr style={{margin: '1em 0'}}/>
-            <PostFilter filter={filter} setFilter={setFilter}/>
-            {HandleRequest(isPostLoading, error, 
+            <PostFilter filter={filter} setFilter={setFilter}/> 
+            {HandleRequest(isPostLoading, error,
                     () => <PostList 
                     remove={removePost}
                     posts={sortedAndSearchedPosts}
                     title={posts.length === 0 ? "No posts" : "Posts list"}
                     lastElement={lastElement}
-                    loadedOk={!isPostLoading}/> 
+                    loadedOk={!isPostLoading && !isEffected(filter)}/> 
                   )}
             {/* <Pagination totalPages={totalPages ? totalPages : 0} page={page} changePage={changePage}/> */}
                 
