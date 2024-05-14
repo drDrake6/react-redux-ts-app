@@ -4,16 +4,22 @@ import MyInput from '../components/UI/input/MyInput';
 import MySelect from '../components/UI/select/MySelect';
 import { PostFilterType } from '../types/utils';
 import { getPostKey } from '../utils/other';
+import MyButton from '../components/UI/button/MyButton';
+import MyModal from '../components/UI/model/MyModel';
+import PostForm from '../components/PostForm';
 
-type PostFilterProps = {
+type PostToolsProps = {
     filter: PostFilterType;
     setFilter: (filer: PostFilterType) => void
 }
 
-const PostFilter: React.FC<PostFilterProps> = ({filter, setFilter}) => {
+const PostTools: React.FC<PostToolsProps> = ({filter, setFilter}) => {
+
+    //let [modal, setModal] = useState(false);
+
     return (
 
-        <div>
+        <div className='filter-content'>
         <MyInput 
           value={filter.query}
           onChange={e => setFilter({...filter, query: e.target.value})}
@@ -36,4 +42,4 @@ const PostFilter: React.FC<PostFilterProps> = ({filter, setFilter}) => {
     );
 };
 
-export default PostFilter;
+export default PostTools;

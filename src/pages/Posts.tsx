@@ -54,16 +54,19 @@ const Posts: React.FC = () => {
     
     const sortedAndSearchedPosts = usePost(posts, filter.sort, filter.query)
 
-    return (
-        <div className='content'>
-            <MyButton style={{marginTop: '2em'}} onClick={() => setModal(true)}>
+    return (<div>
+        <div className='post__tools'>
+        
+            <PostFilter filter={filter} setFilter={setFilter}/> 
+            <MyButton onClick={() => setModal(true)}>
                 Create Post
             </MyButton>
             <MyModal visible={modal} setVisible={setModal}>
             <PostForm create={createPost}/>
             </MyModal>
-            <hr style={{margin: '1em 0'}}/>
-            <PostFilter filter={filter} setFilter={setFilter}/> 
+        </div>
+        <div className='content'>
+        
             {HandleRequest(isPostLoading, error,
                     () => <PostList 
                     remove={removePost}
@@ -74,7 +77,7 @@ const Posts: React.FC = () => {
                   )}
             {/* <Pagination totalPages={totalPages ? totalPages : 0} page={page} changePage={changePage}/> */}
                 
-        </div>
+        </div></div>
     );
 };
 
