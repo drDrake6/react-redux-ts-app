@@ -28,23 +28,24 @@ const PostIdPage: React.FC = () => {
     }, [])
 
     return (
-        <div>
+        <div className='content'>
             
-            {HandleRequest(isLoading, error, 
+            {HandleRequest(isLoading, error,
                 () => post == null ? "No post" : <h1>{post.id}. {post.title}</h1>)} 
             
-            
-            <h1>
-                Comments
-            </h1>
              {HandleRequest(isCommentsLoading, commentsError, 
                 () => <div>
-                        {comments.map((comment) => 
-                            <div style={{marginTop: '1em'}} key={comment.id}>
-                                <h5>{comment.email}</h5>
-                                <div>{comment.body}</div>
-                            </div>)}
-                      </div>)
+                        <h1>
+                            Comments
+                        </h1>
+                        <div>
+                            {comments.map((comment) => 
+                                <div style={{marginTop: '1em'}} key={comment.id}>
+                                    <h5>{comment.email}</h5>
+                                    <div>{comment.body}</div>
+                                </div>)}
+                        </div>
+                      </div>, !isLoading)
             }
         </div>
     );

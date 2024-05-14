@@ -55,7 +55,7 @@ const Posts: React.FC = () => {
     const sortedAndSearchedPosts = usePost(posts, filter.sort, filter.query)
 
     return (
-        <div className='App'>
+        <div className='content'>
             <MyButton style={{marginTop: '2em'}} onClick={() => setModal(true)}>
                 Create Post
             </MyButton>

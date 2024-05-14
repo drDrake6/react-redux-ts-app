@@ -24,14 +24,15 @@ export const isEffected = (filter: PostFilterType): boolean => {
 export const HandleRequest = (
   isPostLoading: boolean, 
   error: string | null, 
-  callback: () => JSX.Element | string
+  callback: () => JSX.Element | string,
+  showLoader: boolean = true
 ) => {
   if(error)
     return <h1>Error occured {error}</h1>
   else
   return (<div>
     {callback()}
-    {isPostLoading &&
+    {isPostLoading && showLoader &&
         (<div style={{
         display: 'flex', 
         justifyContent: 'center',
