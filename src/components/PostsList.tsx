@@ -17,7 +17,7 @@ type PostListProps = {
 const PostList: React.FC<PostListProps> = ({title, posts, remove, loadedOk, lastElement}) => {
         return (
         <div className='post-list'>
-            <h1 style={{textAlign: "center"}}>
+            <h1 style={{whiteSpace: 'nowrap'}}>
                 {title}
             </h1>
             <TransitionGroup>
