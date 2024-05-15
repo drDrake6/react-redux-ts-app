@@ -1,6 +1,6 @@
 import {MutableRefObject, useEffect, useRef} from "react"
 import { PostFilterType } from "../types/utils";
-import { isEffected } from "../utils/pages";
+import { isFiltered } from "../utils/pages";
 
  export const useObserver = (
     ref: React.RefObject<HTMLDivElement>, 
@@ -8,7 +8,7 @@ import { isEffected } from "../utils/pages";
     let observer: MutableRefObject<IntersectionObserver> = useRef(new IntersectionObserver(() => {}));
     useEffect(
         () => {
-          if(isEffected(filter)) return;
+          if(isFiltered(filter)) return;
           if(isLoading) return;
           if(!ref.current) return;
           if(observer.current) 

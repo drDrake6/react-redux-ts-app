@@ -12,7 +12,7 @@ import PostFilter from './PostFilter';
 import Pagination from '../components/UI/Pagination/Pagination';
 import { useObserver } from '../hooks/useObserver';
 import Loader from '../components/UI/Loader/Loader';
-import { HandleRequest, isEffected } from '../utils/pages';
+import { HandleRequest, isFiltered } from '../utils/pages';
 
 const Posts: React.FC = () => {
    
@@ -24,8 +24,6 @@ const Posts: React.FC = () => {
 
     const {posts, totalPages, isLoading: isPostLoading, error} = useTypedSelector(state => state.posts);
 
-    //console.log(paginated)
-
     useObserver(lastElement, 
         page < (totalPages ? totalPages : 0),
         filter,
@@ -33,7 +31,6 @@ const Posts: React.FC = () => {
         () => { setPage(page + 1) })
 
     useEffect(() => {
-        
         fetchPosts(limit, page, posts);
     }, [limit, page])
 
@@ -56,7 +53,6 @@ const Posts: React.FC = () => {
 
     return (<div>
         <div className='post__tools'>
-        
             <PostFilter filter={filter} setFilter={setFilter}/> 
             <MyButton onClick={() => setModal(true)}>
                 Create Post
@@ -73,7 +69,7 @@ const Posts: React.FC = () => {
                     posts={sortedAndSearchedPosts}
                     title={posts.length === 0 ? "No posts" : "Posts list"}
                     lastElement={lastElement}
-                    loadedOk={!isPostLoading && !isEffected(filter)}/> 
+                    loadedOk={!isPostLoading && !isFiltered(filter)}/> 
                   )}
             {/* <Pagination totalPages={totalPages ? totalPages : 0} page={page} changePage={changePage}/> */}
                 

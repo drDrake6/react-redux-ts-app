@@ -17,7 +17,7 @@ export const isPrevPage = (page: number, postsLenght: number, totalPages: number
   return page < 1 + postsLenght / totalPages;
 }
 
-export const isEffected = (filter: PostFilterType): boolean => {
+export const isFiltered = (filter: PostFilterType): boolean => {
   return filter.query !== '' || filter.sort !== undefined;
 }
 
