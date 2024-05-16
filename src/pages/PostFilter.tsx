@@ -19,13 +19,15 @@ const PostTools: React.FC<PostToolsProps> = ({filter, setFilter}) => {
 
     return (
 
-        <div className='filter-content'>
+      <div className='filter-content'>
         <MyInput 
+          className='flex-item'
           value={filter.query}
           onChange={e => setFilter({...filter, query: e.target.value})}
           placeholder="Search..."
         />
         <MySelect
+          className='flex-item'
           value={filter.sort}
           onChange={(e) => {
             setFilter({

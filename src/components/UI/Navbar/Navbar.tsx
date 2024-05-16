@@ -15,8 +15,10 @@ const Navbar: React.FC = () => {
         <div className="navbar">
             {/* <MyButton>Log out</MyButton> */}
             <div className="navbar__links">
-              <Link className="navbar__link" to="/about">About</Link>
-              <Link className="navbar__link" to="/posts">Posts</Link>
+              <ul className="menu-list">
+              <li><Link className="navbar__link" to="/about">About</Link></li>
+              <li><Link className="navbar__link" to="/posts">Posts</Link></li>
+              </ul>
             </div>
         </div>
     );

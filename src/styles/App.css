@@ -82,7 +82,7 @@
 .navbar{
     position: fixed;
     height: var(--navbar-height);
-    width: 100vmax;
+    width: 100%;
     display: flex;
     align-items: center;
     padding: 0 1em;
@@ -97,21 +97,88 @@
     margin-left: 1em;
 }
 
-.post__tools{
-    position: fixed;
-    width: 30em;
-    margin: 1em auto;
-    left: 0;
-    right: 0;
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-    gap: 1em;
-    
+/***************************************/
+
+div.burger-menu
+{
+    display: none;
 }
 
-.filter-content{
-    display: flex;
-    flex-direction: row;
-    gap: 0.5em;
+nav>div>div.left_nav>div.burger-menu>ul
+{
+    list-style: none;
+    display: none;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav>div>div.left_nav>div.burger-menu>ul>li
+{
+    padding: 1rem 0;
+    height: 1rem;
+}
+
+nav>div>div.left_nav>div.burger-menu>ul>li>a
+{
+    padding: 1rem 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    display: block;
+    height: 1rem;
+    position: relative;
+    bottom: 1rem;
+}
+
+nav>div>div.left_nav>div.burger-menu>ul>li:hover
+{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+@media (orientation: landscape) {
+    .post__tools{
+        position: fixed;
+        width: 100%;
+        margin: 1em 1em 0 auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 1em;
+
+    }
+
+    .filter-content{
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+    }
+}
+
+@media (orientation: portrait) {
+
+    .post__tools{
+        position: fixed;
+        width: 75%;
+        margin: 1em 1em 0 auto;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 1em;
+
+    }
+
+    .filter-content{
+        display: flex;
+        flex-direction: row;
+        gap: 0.5em;
+    }
+
+    .flex-item{
+        width: 50%;
+    }
 }
